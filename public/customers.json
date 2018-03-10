@@ -1,26 +1,26 @@
 [
-    {
-        "ID": "JakSwi",
-        "fName": "Jakub",
-        "lName": "Swietoniowski",
-        "balance": 50,
-        "directDebit": true,
-        "membership": true
-    },
-    {
-        "ID": "AdaLam",
-        "fName": "Adam",
-        "lName": "Lammie",
-        "balance": 150,
-        "directDebit": false,
-        "membership": true
-    },
-    {
-        "ID": "TarGil",
-        "fName": "Taran",
-        "lName": "Gill",
-        "balance": 500,
-        "directDebit": true,
-        "membership": true
-    }
+  {
+    "ID": "JakSwi",
+    "fName": "Jakub",
+    "lName": "Swietoniowski",
+    "balance": 50,
+    "directDebit": true,
+    "membership": true
+  },
+  {
+    "ID": "AdaLam",
+    "fName": "Adam",
+    "lName": "Lammie",
+    "balance": 150,
+    "directDebit": false,
+    "membership": true
+  },
+  {
+    "ID": "MuhIss",
+    "fName": "Muhammed",
+    "lName": "Issa",
+    "balance": "25",
+    "directDebit": true,
+    "membership": false
+  }
 ]
