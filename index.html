@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Runner's club project</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+    <div id="login">
+        <div class="loginStatus">
+            <p class="loader"></p>
+            <p>Authenticating</p>
+        </div>
+        <h3>LOGIN</h3>
+        <p>username</p><input id="name" type="text">
+        <p>password</p><input id="pass" type="password">
+        <input id="submit" type="submit" value="SUBMIT" onclick="login()">
+    </div>
+    <div id="panel">
+        <div id="content">
+            <button id="addCust">Add customer</button>
+        </div>
+    </div>
+
+    <div class="modal">
+        <div class="modalBox">
+            <span class="close">&times;</span>
+            <div id="addCustomer">
+                <span>First name:</span><input type="text" id="addFName">
+                <span>Last name:</span><input type="text" id="addLName">
+                <span>Balance:</span><input type="text" id="addBalance">
+                <span>Direct Debit:</span><input id="addDDebit" type="checkbox">
+                <span>Membership:</span><input id="addMembership" type="checkbox">
+                <input id="pushCustomer" type="submit" value="Submit">
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
