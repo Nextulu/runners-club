@@ -16,7 +16,7 @@ app.listen(process.env.PORT || 1337, () => console.log("Server is running!"))
 app.post("/", function (req, res) {
 	if(req.body.depositID != null) {
 		let file = JSON.parse(fs.readFileSync('./public/customers.json').toString());
-		file[parseInt(req.body.depositID)]["balance"] -= parseInt(req.body.depositValue);
+		file[parseInt(req.body.depositID)]["balance"] += parseInt(req.body.depositValue);
 	
 		fs.writeFile('./public/customers.json', JSON.stringify(file, null, 2), function(err) {
 			if (err) throw err;
@@ -26,7 +26,7 @@ app.post("/", function (req, res) {
 	}
 	else if(req.body.withdrawID != null) {
 		let file = JSON.parse(fs.readFileSync('./public/customers.json').toString());
-		file[parseInt(req.body.withdrawID)]["balance"] += parseInt(req.body.withdrawValue);
+		file[parseInt(req.body.withdrawID)]["balance"] -= parseInt(req.body.withdrawValue);
 	
 		fs.writeFile('./public/customers.json', JSON.stringify(file, null, 2), function(err) {
 			if (err) throw err;

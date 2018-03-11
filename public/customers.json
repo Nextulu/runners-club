@@ -11,7 +11,7 @@
     "ID": "AdaLam",
     "fName": "Adam",
     "lName": "Lammie",
-    "balance": 10,
+    "balance": 50,
     "directDebit": false,
     "membership": true
   },

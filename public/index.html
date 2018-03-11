@@ -39,11 +39,11 @@
             </div>
             <div id="formChangeBalance">
                 <form id="formDeposit" action="/">
-                    <input type="text" name="depositID" id="depositID">
+                    <input type="hidden" name="depositID" id="depositID">
                     <span>Deposit:</span><input type="text" name="depositValue" id="changeDeposit">
                     <input type="submit" value="Submit"></form>
                 <form id="formWithdraw" action="/">
-                    <input type="text" name="withdrawID" id="withdrawID">
+                    <input type="hidden" name="withdrawID" id="withdrawID">
                     <span>Withdraw:</span><input type="text" name="withdrawValue" id="changeWithdraw">
                     <input type="submit" value="Submit"></form>
             </div>
@@ -63,7 +63,7 @@
         type:'post',
         data:$('#formAddCustomer').serialize(),
         success:function(){
-            alert("Customer added");
+            alert("Customer added!");
             makeRequest("customers.json");
         }
     });
@@ -75,7 +75,7 @@
         type:'post',
         data:$('#formDeposit').serialize(),
         success:function(){
-            alert("Deposit made from account");
+            alert("Deposit successful!");
             makeRequest("customers.json");
         }
     });
@@ -87,7 +87,7 @@
         type:'post',
         data:$('#formWithdraw').serialize(),
         success:function(){
-            alert("Withdraw made to account");
+            alert("Withdraw successful!");
             makeRequest("customers.json");
         }
     });
