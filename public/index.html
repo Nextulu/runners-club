@@ -59,7 +59,7 @@
     $('#formAddCustomer').submit(function(e){
     e.preventDefault();
     $.ajax({
-        url:'http://localhost:1337/',
+        url: $(this).attr("href"),
         type:'post',
         data:$('#formAddCustomer').serialize(),
         success:function(){
@@ -71,7 +71,7 @@
     $('#formDeposit').submit(function(e){
     e.preventDefault();
     $.ajax({
-        url:'http://localhost:1337/',
+        url: $(this).attr("href"),
         type:'post',
         data:$('#formDeposit').serialize(),
         success:function(){
@@ -83,7 +83,7 @@
     $('#formWithdraw').submit(function(e){
     e.preventDefault();
     $.ajax({
-        url:'http://localhost:1337/',
+        url: $(this).attr("href"),
         type:'post',
         data:$('#formWithdraw').serialize(),
         success:function(){
