@@ -3,7 +3,7 @@
     "ID": "JakSwi",
     "fName": "Jakub",
     "lName": "Swietoniowski",
-    "balance": 50,
+    "balance": 730,
     "directDebit": true,
     "membership": true
   },
@@ -11,7 +11,7 @@
     "ID": "AdaLam",
     "fName": "Adam",
     "lName": "Lammie",
-    "balance": 150,
+    "balance": 10,
     "directDebit": false,
     "membership": true
   },
@@ -19,7 +19,7 @@
     "ID": "MuhIss",
     "fName": "Muhammed",
     "lName": "Issa",
-    "balance": "25",
+    "balance": 40,
     "directDebit": true,
     "membership": false
   }

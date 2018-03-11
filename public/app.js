@@ -85,6 +85,7 @@ function showCustomers() {
 		lName.className = "name";
 		balance.innerHTML = customers[i].balance;
 		balance.className = "balance";
+		balance.id = i;
 		customer.appendChild(fName);
 		customer.appendChild(lName);
 		customer.appendChild(balance);
@@ -93,18 +94,24 @@ function showCustomers() {
 	}
 }
 
-
+let formBalanceChange = document.getElementById("formChangeBalance");
+let appendCustomer = document.getElementById("appendCustomer");
+let formCustomerID = document.getElementById("customerID");
+let withdrawBtn = document.getElementById("withdrawBtn"); 
 
 function balanceChange() {
 	let modal = document.getElementsByClassName("modal")[0];
 	let span = document.getElementsByClassName("close")[0];
 	modal.style.display = "block";
+	formChangeBalance.style.display = "block";
 	span.addEventListener('click', function() {
-    	modal.style.display = "none";
+		modal.style.display = "none";
+		formChangeBalance.style.display = "none";
 	});
 	window.addEventListener('click', function(event) {
     	if (event.target == modal) {
-        	modal.style.display = "none";
+			modal.style.display = "none";
+			formChangeBalance.style.display = "none";
     	}
 	});
 }
@@ -130,8 +137,10 @@ function addCustomer() {
 }
 
 document.addEventListener('click', function (event) {
-    if ( event.target.classList.contains( 'balance' ) ) {
-        balanceChange();
+    if ( event.target.classList.contains('balance') ) {
+		balanceChange();
+		document.getElementById("depositID").value = event.target.id;
+		document.getElementById("withdrawID").value = event.target.id;
     }
 }, false);
 
@@ -140,7 +149,7 @@ btnAddCust.addEventListener("click", pushCustomer);
 
 
 function pushCustomer() {
-	let cust = {};
+	/*let cust = {};
 	cust.ID = addFName.value.substring(0, 3) + addLName.value.substring(0, 3);
 	cust.fName = addFName.value;
 	cust.lName = addLName.value;
@@ -158,5 +167,5 @@ function pushCustomer() {
 	
 	customers.push(cust);
 	showCustomers();
-	console.log(customers);
+	console.log(customers);*/
 }
