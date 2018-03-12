@@ -18,6 +18,9 @@
     </div>
     <div id="panel">
         <div id="content">
+
+            <input id="payMembership" name="payMembership" type="button" value="Pay monthly fee">
+
             <button id="addCust">Add customer</button>
             <div id="customersList">
 
@@ -29,7 +32,7 @@
         <div class="modalBox">
             <span class="close">&times;</span>
             <div id="addCustomer">
-                <form id="formAddCustomer" action="/newCustomer">
+                <form id="formAddCustomer" action="/">
                 <span>First name:</span><input type="text" name="fName" id="addFName">
                 <span>Last name:</span><input type="text" name="lName" id="addLName">
                 <span>Balance:</span><input type="text"  name="balance" id="addBalance">
@@ -46,6 +49,12 @@
                     <input type="hidden" name="withdrawID" id="withdrawID">
                     <span>Withdraw:</span><input type="text" name="withdrawValue" id="changeWithdraw">
                     <input type="submit" value="Submit"></form>
+            </div>
+            <div id="formDeleteCustomer">
+                <form id="formDelete" action="/">
+                    <input type="hidden" name="deleteID" id="deleteID">
+                    <input type="submit" value="Delete">
+                </form>
             </div>
         </div>
     </div>
@@ -88,6 +97,31 @@
         data:$('#formWithdraw').serialize(),
         success:function(){
             alert("Withdraw successful!");
+            makeRequest("customers.json");
+        }
+    });
+    });
+    $('#formDelete').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: $(this).attr("href"),
+        type:'post',
+        data:$('#formDelete').serialize(),
+        success:function(){
+            alert("Deletion successful!");
+            makeRequest("customers.json");
+        }
+    });
+    });
+    $('#payMembership').click(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: $(this).attr("href"),
+        type:'post',
+        data: JSON.stringify({ "reqID": "payMembership" }),
+        contentType: 'application/json',
+        success:function(){
+            alert("Payment successful!");
             makeRequest("customers.json");
         }
     });

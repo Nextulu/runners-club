@@ -207,3 +207,6 @@ body {
 #formChangeBalance {
     display: none;
 }
+#formDeleteCustomer {
+    display: none;
+}

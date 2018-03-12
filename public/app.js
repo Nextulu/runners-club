@@ -86,6 +86,14 @@ function showCustomers() {
 		balance.innerHTML = customers[i].balance;
 		balance.className = "balance";
 		balance.id = i;
+
+		let btnDelete = document.createElement("input");
+		btnDelete.type = "button";
+		btnDelete.value = "Delete";
+		btnDelete.className = "btnDelete";
+		btnDelete.id = i;
+		
+		customer.appendChild(btnDelete);
 		customer.appendChild(fName);
 		customer.appendChild(lName);
 		customer.appendChild(balance);
@@ -132,10 +140,34 @@ function addCustomer() {
 }
 
 document.addEventListener('click', function (event) {
-    if ( event.target.classList.contains('balance') ) {
+    if (event.target.classList.contains('balance')) {
 		balanceChange();
 		document.getElementById("depositID").value = event.target.id;
 		document.getElementById("withdrawID").value = event.target.id;
-    }
+	}
+	else if (event.target.classList.contains('btnDelete')) {
+		confirmDelete();
+		document.getElementById("deleteID").value = event.target.id;
+	}
 }, false);
+
+let formDeleteCustomer = document.getElementById("formDeleteCustomer");
+
+
+function confirmDelete() {
+	let modal = document.getElementsByClassName("modal")[0];
+	let span = document.getElementsByClassName("close")[0];
+	modal.style.display = "block";
+	formDeleteCustomer.style.display = "block";
+	span.addEventListener('click', function() {
+		modal.style.display = "none";
+		formDeleteCustomer.style.display = "none";
+	});
+	window.addEventListener('click', function(event) {
+    	if (event.target == modal) {
+			modal.style.display = "none";
+			formDeleteCustomer.style.display = "none";
+    	}
+	});
+}
 
