@@ -94,11 +94,6 @@ function showCustomers() {
 	}
 }
 
-let formBalanceChange = document.getElementById("formChangeBalance");
-let appendCustomer = document.getElementById("appendCustomer");
-let formCustomerID = document.getElementById("customerID");
-let withdrawBtn = document.getElementById("withdrawBtn"); 
-
 function balanceChange() {
 	let modal = document.getElementsByClassName("modal")[0];
 	let span = document.getElementsByClassName("close")[0];
@@ -144,28 +139,3 @@ document.addEventListener('click', function (event) {
     }
 }, false);
 
-let btnAddCust = document.getElementById("pushCustomer");
-btnAddCust.addEventListener("click", pushCustomer);
-
-
-function pushCustomer() {
-	/*let cust = {};
-	cust.ID = addFName.value.substring(0, 3) + addLName.value.substring(0, 3);
-	cust.fName = addFName.value;
-	cust.lName = addLName.value;
-	cust.balance = parseInt(addBalance.value);
-	if(addDDebit.checked) {
-		cust.directDebit = true;
-	} else {
-		cust.directDebit = false;
-	}
-	if(addMembership.checked) {
-		cust.membership = true;
-	} else {
-		cust.membership = false;
-	}
-	
-	customers.push(cust);
-	showCustomers();
-	console.log(customers);*/
-}
