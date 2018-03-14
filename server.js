@@ -74,7 +74,8 @@ app.post("/", function (req, res) {
 			"lName": req.body.lName,
 			"balance": parseInt(req.body.balance),
 			"directDebit": req.body.directDebit ? true : false,
-			"membership": req.body.membership ? true : false
+			"membership": req.body.membership ? true : false,
+			"5kTime": req.body.fivekTime
 		}
 		file.push(customer)
 		fs.writeFile('./public/customers.json', JSON.stringify(file, null, 2), function(err) {

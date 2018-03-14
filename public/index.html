@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>Runner's club project</title>
+    <title>Runners Club Project</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
@@ -16,15 +16,14 @@
         <p>password</p><input id="pass" type="password">
         <input id="submit" type="submit" value="SUBMIT" onclick="login()">
     </div>
-    <div id="panel">
-        <div id="content">
+    <div id="sidepanel">
+        <input id="payMembership" name="payMembership" type="button" value="Pay monthly fee">
 
-            <input id="payMembership" name="payMembership" type="button" value="Pay monthly fee">
+        <button id="addCust">Add customer</button>
+    </div>
+    <div id="panel"> 
+        <div id="customersList">
 
-            <button id="addCust">Add customer</button>
-            <div id="customersList">
-
-            </div>
         </div>
     </div>
 
@@ -38,7 +37,8 @@
                 <span>Balance:</span><input type="text"  name="balance" id="addBalance">
                 <span>Direct Debit:</span><input type="checkbox" name="directDebit" id="addDDebit">
                 <span>Membership:</span><input type="checkbox" name="membership" id="addMembership">
-                <input type="submit" value="Submit"></form>
+                <span>5k time:</span><input type="text" name="fivekTime" id="add5kTime">
+                <input type="submit" value="Submit" id="btnAddCustomer"></form>
             </div>
             <div id="formChangeBalance">
                 <form id="formDeposit" action="/">
@@ -53,7 +53,7 @@
             <div id="formDeleteCustomer">
                 <form id="formDelete" action="/">
                     <input type="hidden" name="deleteID" id="deleteID">
-                    <input type="submit" value="Delete">
+                    <input type="submit" value="Delete" id="btnDelete">
                 </form>
             </div>
         </div>
@@ -65,67 +65,84 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
     <script>
-    $('#formAddCustomer').submit(function(e){
-    e.preventDefault();
-    $.ajax({
-        url: $(this).attr("href"),
-        type:'post',
-        data:$('#formAddCustomer').serialize(),
-        success:function(){
-            alert("Customer added!");
-            makeRequest("customers.json");
+        $('#formAddCustomer').submit(function(e){
+        isCustomerValid(validationData);
+        e.preventDefault();
+        if(isCustomerValid(validationData)) {
+            $.ajax({
+            url: $(this).attr("href"),
+            type:'post',
+            data:$('#formAddCustomer').serialize(),
+            success:function(){
+                alert("Customer added!");
+                makeRequest("customers.json");
+                $('form').trigger("reset");
+                validationData = {
+                    "fName": false,
+                    "lName": false,
+                    "balance": false,
+                    "fiveKTime": false
+                }
+
+            }
+        });
         }
-    });
-    });
-    $('#formDeposit').submit(function(e){
-    e.preventDefault();
-    $.ajax({
-        url: $(this).attr("href"),
-        type:'post',
-        data:$('#formDeposit').serialize(),
-        success:function(){
-            alert("Deposit successful!");
-            makeRequest("customers.json");
+        else {
+            console.log("There was an error while adding a new customer");
         }
-    });
-    });
-    $('#formWithdraw').submit(function(e){
-    e.preventDefault();
-    $.ajax({
-        url: $(this).attr("href"),
-        type:'post',
-        data:$('#formWithdraw').serialize(),
-        success:function(){
-            alert("Withdraw successful!");
-            makeRequest("customers.json");
-        }
-    });
-    });
-    $('#formDelete').submit(function(e){
-    e.preventDefault();
-    $.ajax({
-        url: $(this).attr("href"),
-        type:'post',
-        data:$('#formDelete').serialize(),
-        success:function(){
-            alert("Deletion successful!");
-            makeRequest("customers.json");
-        }
-    });
-    });
-    $('#payMembership').click(function(e){
-    e.preventDefault();
-    $.ajax({
-        url: $(this).attr("href"),
-        type:'post',
-        data: JSON.stringify({ "reqID": "payMembership" }),
-        contentType: 'application/json',
-        success:function(){
-            alert("Payment successful!");
-            makeRequest("customers.json");
-        }
-    });
-    });
+        
+        });
+        $('#formDeposit').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr("href"),
+            type:'post',
+            data:$('#formDeposit').serialize(),
+            success:function(){
+                alert("Deposit successful!");
+                makeRequest("customers.json");
+                $('form').trigger("reset");       
+            }
+        });
+        });
+        $('#formWithdraw').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr("href"),
+            type:'post',
+            data:$('#formWithdraw').serialize(),
+            success:function(){
+                alert("Withdraw successful!");
+                makeRequest("customers.json");
+                $('form').trigger("reset");
+            }
+        });
+        });
+        $('#formDelete').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr("href"),
+            type:'post',
+            data:$('#formDelete').serialize(),
+            success:function(){
+                alert("Deletion successful!");
+                makeRequest("customers.json");
+            }
+        });
+        });
+        $('#payMembership').click(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr("href"),
+            type:'post',
+            data: JSON.stringify({ "reqID": "payMembership" }),
+            contentType: 'application/json',
+            success:function(){
+                alert("Payment successful!");
+                makeRequest("customers.json");
+            }
+        });
+        });
     </script>
 </body>
 </html>

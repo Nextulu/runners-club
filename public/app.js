@@ -76,28 +76,73 @@ function showCustomers() {
 	}
 	for(let i = 0; i < customers.length; i++) {
 		let customer = document.createElement("div");
-		let fName = document.createElement("p");
-		let lName = document.createElement("p");
-		let balance = document.createElement("p")
-		fName.innerHTML = customers[i].fName;
-		fName.className = "name";
-		lName.innerHTML = customers[i].lName;
-		lName.className = "name";
-		balance.innerHTML = customers[i].balance;
-		balance.className = "balance";
-		balance.id = i;
+		customer.className = "customer";
+		
+		let name = document.createElement("span");
+		name.innerHTML = customers[i].fName + " " + customers[i].lName;
+		name.className = "customerName";
+		customer.appendChild(name);
+
+		let btnBalance = document.createElement("input");
+		btnBalance.type = "button";
+		btnBalance.value = "Balance";
+		btnBalance.className = "balance";
+		btnBalance.id = i;
+	
+		let first = document.createElement("p");
+		first.innerHTML = "id: ";
+		first.className = "customerInfo";
+		customer.appendChild(first);
+
+		let id = document.createElement("span");
+		id.innerHTML = customers[i].ID;
+		id.className = "customerData";
+		first.appendChild(id);
+
+		let second = document.createElement("p");
+		second.innerHTML = "balance: ";
+		second.className = "customerInfo";
+		customer.appendChild(second);
+
+		let balance = document.createElement("span");
+		balance.innerHTML = "&pound;" + customers[i].balance;
+		balance.className = "customerData";
+		second.appendChild(balance);
+
+		let third = document.createElement("p");
+		third.innerHTML = "best time: ";
+		third.className = "customerInfo";
+		customer.appendChild(third);
+
+		let time = document.createElement("span");
+		time.innerHTML = customers[i]["5kTime"];
+		time.className = "customerData";
+		third.appendChild(time);
+
+		let fourth = document.createElement("p");
+		fourth.innerHTML = "membership: ";
+		fourth.className = "customerInfo";
+		customer.appendChild(fourth);
+
+		let membership = document.createElement("span");
+		membership.innerHTML = customers[i].membership ? "Active" : "Inactive";
+		if(membership.innerHTML == "Active") {membership.style.color = "#40A832";}
+		else {membership.style.color = "#E84545";}
+		membership.className = "customerData";
+		fourth.appendChild(membership);
+
+		let bottomBar = document.createElement("div");
+		bottomBar.className = "customerPanel";
+		bottomBar.appendChild(btnBalance);
+		customer.appendChild(bottomBar);
 
 		let btnDelete = document.createElement("input");
 		btnDelete.type = "button";
 		btnDelete.value = "Delete";
 		btnDelete.className = "btnDelete";
 		btnDelete.id = i;
+		bottomBar.appendChild(btnDelete);
 		
-		customer.appendChild(btnDelete);
-		customer.appendChild(fName);
-		customer.appendChild(lName);
-		customer.appendChild(balance);
-		customer.className = "customer";
 		customersList.appendChild(customer);
 	}
 }
@@ -128,15 +173,15 @@ function addCustomer() {
 	modal.style.display = "block";
 	span.addEventListener('click', function() {
 		modal.style.display = "none";
-		document.getElementById("addCustomer").style.display = "none";
+		document.getElementById("formAddCustomer").style.display = "none";
 	});
 	window.addEventListener('click', function(event) {
     	if (event.target == modal) {
 			modal.style.display = "none";
-			document.getElementById("addCustomer").style.display = "none";
+			document.getElementById("formAddCustomer").style.display = "none";
     	}
 	});
-	document.getElementById("addCustomer").style.display = "block";
+	document.getElementById("formAddCustomer").style.display = "block";
 }
 
 document.addEventListener('click', function (event) {
@@ -171,3 +216,46 @@ function confirmDelete() {
 	});
 }
 
+document.getElementById("btnDelete").addEventListener("click", function() {
+	document.getElementsByClassName("modal")[0].style.display = "none";
+	document.getElementById("formDeleteCustomer").style.display = "none";
+});
+
+
+let validationData = {
+	"fName": false,
+	"lName": false,
+	"balance": false,
+	"fiveKTime": false
+}
+
+if(isCustomerValid(validationData)) {
+	document.getElementsByClassName("modal")[0].style.display = "none";
+	document.getElementById("formAddCustomer").style.display = "none";
+}
+
+function isCustomerValid(obj) {
+	if(obj.fName == true && obj.lName == true && obj.balance == true && obj.fiveKTime == true) {
+		return true;
+	}
+	return false;
+}
+
+let fName = document.getElementById("addFName");
+let lName = document.getElementById("addLName");
+let balance = document.getElementById("addBalance");
+let fiveKTime = document.getElementById("add5kTime");
+
+function validate(element, regexp, name) {
+	if(regexp.exec(element.value) !== null) {
+		validationData[name] = true;
+	}
+	else {
+		validationData[name] = false;
+	}
+}
+	
+fName.addEventListener("input", () => validate(fName, /^[A-Za-z]{3,}$/, "fName"));
+lName.addEventListener("input", () => validate(lName, /^[A-Za-z]{3,}$/, "lName"));
+balance.addEventListener("input", () => validate(balance, /^[0-9]+$/, "balance"));
+fiveKTime.addEventListener("input", () => validate(fiveKTime, /^[0-9]{2}\:[0-9]{2}\:[0-9]{2}$/, "fiveKTime"));
