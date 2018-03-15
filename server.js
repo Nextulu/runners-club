@@ -47,16 +47,21 @@ app.post("/", function (req, res) {
 	}
 	else if(req.body.reqID == "payMembership") {
 		let file = JSON.parse(fs.readFileSync('./public/customers.json').toString());
-		let membership = 50;
+		let membership = 40;
 		let directDebit = 0.95;
 		for(let i = 0; i < file.length; i++) {
-			if(file[i].membership === true) {
+			if(file[i].balance >= membership * directDebit) {
 				if(file[i].directDebit === true) {
 					file[i].balance -= membership * directDebit;
+					file[i].membership = true;
 				}
-				else {
+				else if(file[i].directDebit === false && file[i].balance >= membership) {
 					file[i].balance -= membership;
-				}	
+					file[i].membership = true;
+				}
+			}
+			else {
+				file[i].membership = false;
 			}
 		}
 

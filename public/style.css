@@ -138,7 +138,7 @@ input:focus {
     float: left;
     height: 100%;
     width: 250px;
-    background-color: #14131C;
+    background-color: #252933;
 }
 #panel {
     display: block;
@@ -194,7 +194,7 @@ input:focus {
     transition: .15s all;
 }
 .balance:hover {
-    background-color: #1948d6;
+    background-color: #648bff;
     cursor: pointer;
 }
 .btnDelete {
@@ -248,33 +248,297 @@ input:focus {
     background-color: rgba(0,0,0,0.4); 
 }
 .modalBox {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    height: 200px;
+    position: relative;
+    margin: 0 auto;
+    height: 470px;
+    width: 450px;
     color: #000000;
+    border-radius: 7px;
 }
 .close {
-    color: #aaaaaa;
-    float: right;
+    color: #466DE2;
+    position: absolute;
+    top: 0;
+    right: 7px;
     font-size: 28px;
     font-weight: bold;
 }
 .close:hover,
 .close:focus {
-    color: #000;
+    color: #3D5FC6;
     text-decoration: none;
     cursor: pointer;
 }
-
-#formaddCustomer {
-    display: none;
+#addCustomer {
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
 }
-#formChangeBalance {
+.formTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4F7BFF;
+    height: 70px;
+    width: 100%;
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: 700;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+#formAddCustomer {
+    background-color: #EFEEF3;
     display: none;
+    position: relative;
+    width: 100%;
+    height: calc(100% - 70px);
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 30px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+#formAddCustomer span  {
+    color: #8f94a2;
+    margin-bottom: 7px;
+    display: inline-block;
+    width: 100px;
+    font-size: 16px;
+}
+#formAddCustomer p  {
+    color: #8f94a2;
+    font-size: 16px;
+}
+#formAddCustomer span:nth-of-type(2) {
+    margin-bottom: 5px;
+}
+#formAddCustomer input {
+    background-color: #FAF9FF;
+    border: 1px solid #e2e1e9;
+    border-radius: 3px;
+    width: 70%;
+    height: 30px;
+    margin-bottom: 7px;
+}
+#formAddCustomer input[type=checkbox] {
+    background-color: #FAF9FF;
+    position: relative;
+    top: 3px;
+    width: 15px;
+    height: 15px;
+}
+#formAddCustomer input::placeholder {
+    color: rgb(200, 205, 219);
+}
+#formAddCustomer input[type=submit] {
+    height: 30px;
+    width: 40%;
+    background-color: #4F7BFF;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all .2s;
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+}
+.invalid {
+    border: 1px solid #E84545!important;
+}
+.correct {
+    border: 1px solid #33ac43!important;
+}
+#formAddCustomer input[type=submit]:hover {
+    background-color: #648bff;
+    transition: all .15s;
+    cursor: pointer;
+}
+#formDeposit {
+    background-color: #EFEEF3;
+    display: none;
+    position: relative;
+    float: left;
+    width: 50%;
+    height: 250px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 30px;
+    border-bottom-left-radius: 7px;
+}
+#formDeposit input[type=submit] {
+    height: 30px;
+    width: 40%;
+    background-color: #4F7BFF;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all .2s;
+}
+#formDeposit input[type=submit]:hover {
+    background-color: #648bff;
+    transition: all .15s;
+    cursor: pointer;
+}
+#formDeposit input {
+    background-color: #FAF9FF;
+    border: 1px solid #e2e1e9;
+    border-radius: 3px;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 7px;
+}
+#formDeposit span  {
+    color: #8f94a2;
+    display: inline-block;
+    width: 100px;
+    font-size: 16px;
+}
+#formWithdraw {
+    background-color: #EFEEF3;
+    display: none;
+    position: relative;
+    float: right;
+    width: 50%;
+    height: 250px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 30px;
+    border-bottom-right-radius: 7px;
+}
+#formWithdraw input[type=submit] {
+    height: 30px;
+    width: 40%;
+    background-color: #4F7BFF;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all .2s;
+}
+#formWithdraw input[type=submit]:hover {
+    background-color: #648bff;
+    transition: all .15s;
+    cursor: pointer;
+}
+#formWithdraw input {
+    background-color: #FAF9FF;
+    border: 1px solid #e2e1e9;
+    border-radius: 3px;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 7px;
+}
+#formWithdraw span  {
+    color: #8f94a2;
+    display: inline-block;
+    width: 100px;
+    font-size: 16px;
+}
+.confirmModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); 
+}
+.confirmTitle {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    color: #5a5675;
+    font-weight: 700;
+    font-size: 17px;
+    margin: 0 auto;
+    height: 50px;
+    width: 430px;
+    background-color: #e2e1e9;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 #formDeleteCustomer {
     display: none;
+    position: relative;
+    background-color: #EFEEF3;
+    margin: 0 auto;
+    height: 150px;
+    width: 430px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 15px;
+    color: #5a5675;
+}
+#formDeleteCustomer input[type=submit] {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 36px;
+    border: none;
+    border-radius: 5px;
+    padding: 0 8px 0 8px;
+    background-color: #E84545;
+    color: #FAF9FF;
+    border: 1px solid #E8A4A4;
+    font-weight: 700; 
+}
+#formDeleteCustomer input[type=submit]:hover {
+    background-color: #ed7272;
+    cursor: pointer;
+    transition: .15s all;
+}
+#formDeleteCustomer input[type=button] {
+    position: absolute;
+    bottom: 20px;
+    right: 180px;
+    height: 36px;
+    border: none;
+    border-radius: 5px;
+    padding: 0 8px 0 8px;
+    background-color: transparent;
+    color: #8c8c8c;
+    border: 1px solid #c6c4d3;
+    font-weight: 700; 
+}
+#formDeleteCustomer input[type=button]:hover {
+    color: #595959;
+    border: 1px solid #aaa7bd;
+    cursor: pointer;
+    transition: .15s all;
+}
+#menu {
+    width: 100%;
+    height: 200px;
+    margin-top: 200px;
+}
+#menu input {
+    width: 100%;
+    height: 50px;
+    background-color: #1d2129;
+    border: none;
+    border-right: 5px solid #1d2129;
+    color: #eeeaff;
+    font-size: 17px;
+}
+#menu input:hover {
+    color: #faf9ff;
+    border-right: 5px solid #4F7BFF;
+    cursor: pointer;
+}
+#menu footer {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    color: #75839d;
+
 }

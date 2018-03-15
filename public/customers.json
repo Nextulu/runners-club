@@ -3,7 +3,7 @@
     "ID": "AdaLam",
     "fName": "Adam",
     "lName": "Lammie",
-    "balance": 220,
+    "balance": 57,
     "directDebit": true,
     "membership": true,
     "5kTime": "00:15:02"
@@ -12,7 +12,7 @@
     "ID": "JakSwi",
     "fName": "Jakub",
     "lName": "Swietoniowski",
-    "balance": 250,
+    "balance": 30,
     "directDebit": false,
     "membership": true,
     "5kTime": "00:12:46"
@@ -21,45 +21,45 @@
     "ID": "TarGil",
     "fName": "Taran",
     "lName": "Gill",
-    "balance": 367,
+    "balance": 192,
     "directDebit": true,
     "membership": true,
     "5kTime": "00:25:53"
   },
   {
-    "ID": "MatKoz",
-    "fName": "Mateusz",
-    "lName": "Kozak",
-    "balance": 150,
-    "directDebit": false,
-    "membership": true,
-    "5kTime": "00:19:24"
-  },
-  {
-    "ID": "JakSty",
-    "fName": "Jakub",
-    "lName": "Styrylski",
-    "balance": 200,
-    "directDebit": false,
-    "membership": false,
-    "5kTime": "00:12:32"
-  },
-  {
     "ID": "MuhIss",
     "fName": "Muhammed",
     "lName": "Issa",
-    "balance": 150,
-    "directDebit": false,
+    "balance": 248,
+    "directDebit": true,
     "membership": true,
     "5kTime": "00:09:46"
   },
   {
-    "ID": "JakSzc",
-    "fName": "Jakub",
-    "lName": "Szczesniak",
-    "balance": 500,
-    "directDebit": false,
+    "ID": "LewSmi",
+    "fName": "Lewis",
+    "lName": "Smith",
+    "balance": 67,
+    "directDebit": true,
     "membership": true,
-    "5kTime": "00:11:34"
+    "5kTime": "00:12:34"
+  },
+  {
+    "ID": "AraDav",
+    "fName": "Arawn",
+    "lName": "Davies",
+    "balance": 130,
+    "directDebit": true,
+    "membership": true,
+    "5kTime": "00:15:20"
+  },
+  {
+    "ID": "FahBor",
+    "fName": "Fahan",
+    "lName": "Borhan",
+    "balance": 85,
+    "directDebit": false,
+    "membership": false,
+    "5kTime": "00:08:35"
   }
 ]

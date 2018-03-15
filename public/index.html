@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Runners Club Project</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <body>
     <div id="login">
@@ -17,9 +18,11 @@
         <input id="submit" type="submit" value="SUBMIT" onclick="login()">
     </div>
     <div id="sidepanel">
-        <input id="payMembership" name="payMembership" type="button" value="Pay monthly fee">
-
-        <button id="addCust">Add customer</button>
+        <div id="menu">
+                <input id="payMembership" name="payMembership" type="button" value="Pay monthly fee">
+                <input id="addCust" type="button" value="Add customer">
+                <footer>&copy; 2018 Jakub Swietoniowski</footer>
+        </div>
     </div>
     <div id="panel"> 
         <div id="customersList">
@@ -30,32 +33,36 @@
     <div class="modal">
         <div class="modalBox">
             <span class="close">&times;</span>
-            <div id="addCustomer">
-                <form id="formAddCustomer" action="/">
-                <span>First name:</span><input type="text" name="fName" id="addFName">
-                <span>Last name:</span><input type="text" name="lName" id="addLName">
-                <span>Balance:</span><input type="text"  name="balance" id="addBalance">
-                <span>Direct Debit:</span><input type="checkbox" name="directDebit" id="addDDebit">
-                <span>Membership:</span><input type="checkbox" name="membership" id="addMembership">
-                <span>5k time:</span><input type="text" name="fivekTime" id="add5kTime">
-                <input type="submit" value="Submit" id="btnAddCustomer"></form>
+            <div class="formTitle"></div>
+            <form id="formAddCustomer" action="/">
+                <p>First name</p><input type="text" placeholder="John" name="fName" id="addFName">
+                <p>Last name</p><input type="text" placeholder="Smith"name="lName" id="addLName">
+                <p>Balance</p><input type="text"  placeholder="100" name="balance" id="addBalance">
+                <p>Best time</p><input type="text" placeholder="00:10:00" name="fivekTime" id="add5kTime"> <br/>
+                <span>Direct Debit</span><input type="checkbox" name="directDebit" id="addDDebit"> <br/>
+                <span>Membership</span><input type="checkbox" name="membership" id="addMembership">
+                <input type="submit" value="Submit" id="btnAddCustomer">
+            </form>
+            <form id="formDeposit" action="/">
+                <input type="hidden" name="depositID" id="depositID">
+                <span>Amount</span><input type="text" name="depositValue" id="changeDeposit">
+                <input type="submit" value="Deposit">
+            </form>
+            <form id="formWithdraw" action="/">
+                <input type="hidden" name="withdrawID" id="withdrawID">
+                <span>Amount</span><input type="text" name="withdrawValue" id="changeWithdraw">
+                <input type="submit" value="Withdraw">
+            </form>
             </div>
-            <div id="formChangeBalance">
-                <form id="formDeposit" action="/">
-                    <input type="hidden" name="depositID" id="depositID">
-                    <span>Deposit:</span><input type="text" name="depositValue" id="changeDeposit">
-                    <input type="submit" value="Submit"></form>
-                <form id="formWithdraw" action="/">
-                    <input type="hidden" name="withdrawID" id="withdrawID">
-                    <span>Withdraw:</span><input type="text" name="withdrawValue" id="changeWithdraw">
-                    <input type="submit" value="Submit"></form>
-            </div>
-            <div id="formDeleteCustomer">
-                <form id="formDelete" action="/">
+        </div>
+        <div class="confirmModal">
+            <div class="confirmTitle">Delete customer?</div>
+                <form id="formDeleteCustomer" action="/">
+                    <p>Deleting a customer will permanently remove it from the runners club system.</p>
                     <input type="hidden" name="deleteID" id="deleteID">
-                    <input type="submit" value="Delete" id="btnDelete">
+                    <input type="button" value="No, take me back" id="closeModal">
+                    <input type="submit" value="Yes, delete customer" id="btnDelete">
                 </form>
-            </div>
         </div>
     </div>
     
@@ -74,7 +81,6 @@
             type:'post',
             data:$('#formAddCustomer').serialize(),
             success:function(){
-                alert("Customer added!");
                 makeRequest("customers.json");
                 $('form').trigger("reset");
                 validationData = {
@@ -83,7 +89,12 @@
                     "balance": false,
                     "fiveKTime": false
                 }
-
+                $(".modal").css("display","none");
+                $("#formAddCustomer").css("display","none");
+                $("#addFName").removeClass("correct");
+                $("#addLName").removeClass("correct");
+                $("#addBalance").removeClass("correct");
+                $("#add5kTime").removeClass("correct");
             }
         });
         }
@@ -99,7 +110,6 @@
             type:'post',
             data:$('#formDeposit').serialize(),
             success:function(){
-                alert("Deposit successful!");
                 makeRequest("customers.json");
                 $('form').trigger("reset");       
             }
@@ -118,12 +128,12 @@
             }
         });
         });
-        $('#formDelete').submit(function(e){
+        $('#formDeleteCustomer').submit(function(e){
         e.preventDefault();
         $.ajax({
             url: $(this).attr("href"),
             type:'post',
-            data:$('#formDelete').serialize(),
+            data:$('#formDeleteCustomer').serialize(),
             success:function(){
                 alert("Deletion successful!");
                 makeRequest("customers.json");

@@ -148,18 +148,27 @@ function showCustomers() {
 }
 
 function balanceChange() {
+	document.getElementById("formAddCustomer").style.display = "none";
+	document.getElementById("formDeposit").style.display = "block";
+	document.getElementById("formWithdraw").style.display = "block";
+	document.getElementById("formDeleteCustomer").style.display = "none";
+
+	document.getElementsByClassName("formTitle")[0].innerHTML = "Balance actions";
+
 	let modal = document.getElementsByClassName("modal")[0];
 	let span = document.getElementsByClassName("close")[0];
 	modal.style.display = "block";
-	formChangeBalance.style.display = "block";
+	
 	span.addEventListener('click', function() {
 		modal.style.display = "none";
-		formChangeBalance.style.display = "none";
+		document.getElementById("formDeposit").style.display = "none";
+		document.getElementById("formWithdraw").style.display = "none";
 	});
 	window.addEventListener('click', function(event) {
     	if (event.target == modal) {
 			modal.style.display = "none";
-			formChangeBalance.style.display = "none";
+			document.getElementById("formDeposit").style.display = "none";
+			document.getElementById("formWithdraw").style.display = "none";
     	}
 	});
 }
@@ -168,20 +177,28 @@ let addCust = document.getElementById("addCust");
 addCust.addEventListener("click", addCustomer);
 
 function addCustomer() {
+	document.getElementById("formAddCustomer").style.display = "block";
+	document.getElementById("formDeposit").style.display = "none";
+	document.getElementById("formWithdraw").style.display = "none";
+	document.getElementById("formDeleteCustomer").style.display = "none";
+
+	document.getElementsByClassName("formTitle")[0].innerHTML = "Customer creation";
+	
 	let modal = document.getElementsByClassName("modal")[0];
 	let span = document.getElementsByClassName("close")[0];
 	modal.style.display = "block";
+
 	span.addEventListener('click', function() {
 		modal.style.display = "none";
 		document.getElementById("formAddCustomer").style.display = "none";
 	});
+
 	window.addEventListener('click', function(event) {
     	if (event.target == modal) {
 			modal.style.display = "none";
 			document.getElementById("formAddCustomer").style.display = "none";
     	}
 	});
-	document.getElementById("formAddCustomer").style.display = "block";
 }
 
 document.addEventListener('click', function (event) {
@@ -200,24 +217,25 @@ let formDeleteCustomer = document.getElementById("formDeleteCustomer");
 
 
 function confirmDelete() {
-	let modal = document.getElementsByClassName("modal")[0];
-	let span = document.getElementsByClassName("close")[0];
-	modal.style.display = "block";
+	let confirmModal = document.getElementsByClassName("confirmModal")[0];
+	let close = document.getElementById("closeModal");
+
+	confirmModal.style.display = "block";
 	formDeleteCustomer.style.display = "block";
-	span.addEventListener('click', function() {
-		modal.style.display = "none";
+	close.addEventListener('click', function() {
+		confirmModal.style.display = "none";
 		formDeleteCustomer.style.display = "none";
 	});
 	window.addEventListener('click', function(event) {
-    	if (event.target == modal) {
-			modal.style.display = "none";
+    	if (event.target == confirmModal) {
+			confirmModal.style.display = "none";
 			formDeleteCustomer.style.display = "none";
     	}
 	});
 }
 
 document.getElementById("btnDelete").addEventListener("click", function() {
-	document.getElementsByClassName("modal")[0].style.display = "none";
+	document.getElementsByClassName("confirmModal")[0].style.display = "none";
 	document.getElementById("formDeleteCustomer").style.display = "none";
 });
 
@@ -234,6 +252,11 @@ if(isCustomerValid(validationData)) {
 	document.getElementById("formAddCustomer").style.display = "none";
 }
 
+let fName = document.getElementById("addFName");
+let lName = document.getElementById("addLName");
+let balance = document.getElementById("addBalance");
+let fiveKTime = document.getElementById("add5kTime");
+
 function isCustomerValid(obj) {
 	if(obj.fName == true && obj.lName == true && obj.balance == true && obj.fiveKTime == true) {
 		return true;
@@ -241,17 +264,14 @@ function isCustomerValid(obj) {
 	return false;
 }
 
-let fName = document.getElementById("addFName");
-let lName = document.getElementById("addLName");
-let balance = document.getElementById("addBalance");
-let fiveKTime = document.getElementById("add5kTime");
-
 function validate(element, regexp, name) {
 	if(regexp.exec(element.value) !== null) {
 		validationData[name] = true;
+		element.className = "correct";
 	}
 	else {
 		validationData[name] = false;
+		element.className = "invalid";
 	}
 }
 	
