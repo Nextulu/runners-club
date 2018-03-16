@@ -15,23 +15,21 @@ app.listen(process.env.PORT || 1337, () => console.log("Server is running!"))
 
 app.post("/", function (req, res) {
 	
-	if(req.body.depositID != null) {
+	if(req.body.withdrawID != null) {
 		let file = JSON.parse(fs.readFileSync('./public/customers.json').toString());
-		file[parseInt(req.body.depositID)]["balance"] += parseInt(req.body.depositValue);
-	
+		let customerBalance = file[parseInt(req.body.withdrawID)]["balance"];
+		let difference = customerBalance + Number(req.body.withdrawValue);
+
+		if(req.body.withdrawValue.charAt(0) == "+") {
+			file[parseInt(req.body.withdrawID)]["balance"] += Number(req.body.withdrawValue);
+		}
+		else if(req.body.withdrawValue.charAt(0) == "-" && difference >= 0) {
+			file[parseInt(req.body.withdrawID)]["balance"] += Number(req.body.withdrawValue);
+		}
+
 		fs.writeFile('./public/customers.json', JSON.stringify(file, null, 2), function(err) {
 			if (err) throw err;
-			console.log('Deposit made successfully!');
-			res.end();
-		});
-	}
-	else if(req.body.withdrawID != null) {
-		let file = JSON.parse(fs.readFileSync('./public/customers.json').toString());
-		file[parseInt(req.body.withdrawID)]["balance"] -= parseInt(req.body.withdrawValue);
-	
-		fs.writeFile('./public/customers.json', JSON.stringify(file, null, 2), function(err) {
-			if (err) throw err;
-			console.log('Withdraw made successfully!');
+			console.log('Balance action made successfully!');
 			res.end();
 		});
 	}

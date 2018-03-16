@@ -43,15 +43,11 @@
                 <span>Membership</span><input type="checkbox" name="membership" id="addMembership">
                 <input type="submit" value="Submit" id="btnAddCustomer">
             </form>
-            <form id="formDeposit" action="/">
-                <input type="hidden" name="depositID" id="depositID">
-                <span>Amount</span><input type="text" name="depositValue" id="changeDeposit">
-                <input type="submit" value="Deposit">
-            </form>
             <form id="formWithdraw" action="/">
                 <input type="hidden" name="withdrawID" id="withdrawID">
-                <span>Amount</span><input type="text" name="withdrawValue" id="changeWithdraw">
-                <input type="submit" value="Withdraw">
+                <span>Type in + / - to perform deposit or withdraw accordingly and the exact amount of money (whole numbers only).</span>
+                <input type="text" placeholder="+100" name="withdrawValue" id="changeWithdraw">
+                <input type="submit" value="Submit">
             </form>
             </div>
         </div>
@@ -101,33 +97,23 @@
         else {
             console.log("There was an error while adding a new customer");
         }
-        
-        });
-        $('#formDeposit').submit(function(e){
-        e.preventDefault();
-        $.ajax({
-            url: $(this).attr("href"),
-            type:'post',
-            data:$('#formDeposit').serialize(),
-            success:function(){
-                makeRequest("customers.json");
-                $('form').trigger("reset");       
-            }
-        });
         });
         $('#formWithdraw').submit(function(e){
         e.preventDefault();
-        $.ajax({
-            url: $(this).attr("href"),
-            type:'post',
-            data:$('#formWithdraw').serialize(),
-            success:function(){
-                alert("Withdraw successful!");
-                makeRequest("customers.json");
-                $('form').trigger("reset");
-            }
+        if($("#changeWithdraw").hasClass("correct")) {
+            $.ajax({
+                url: $(this).attr("href"),
+                type:'post',
+                data:$('#formWithdraw').serialize(),
+                success:function(){
+                    makeRequest("customers.json");
+                    $('form').trigger("reset");
+                    $("#changeWithdraw").removeClass("correct");
+                }
+            });
+        }
         });
-        });
+       
         $('#formDeleteCustomer').submit(function(e){
         e.preventDefault();
         $.ajax({
@@ -135,7 +121,6 @@
             type:'post',
             data:$('#formDeleteCustomer').serialize(),
             success:function(){
-                alert("Deletion successful!");
                 makeRequest("customers.json");
             }
         });
@@ -148,7 +133,6 @@
             data: JSON.stringify({ "reqID": "payMembership" }),
             contentType: 'application/json',
             success:function(){
-                alert("Payment successful!");
                 makeRequest("customers.json");
             }
         });

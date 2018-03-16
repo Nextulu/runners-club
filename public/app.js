@@ -149,7 +149,6 @@ function showCustomers() {
 
 function balanceChange() {
 	document.getElementById("formAddCustomer").style.display = "none";
-	document.getElementById("formDeposit").style.display = "block";
 	document.getElementById("formWithdraw").style.display = "block";
 	document.getElementById("formDeleteCustomer").style.display = "none";
 
@@ -161,14 +160,16 @@ function balanceChange() {
 	
 	span.addEventListener('click', function() {
 		modal.style.display = "none";
-		document.getElementById("formDeposit").style.display = "none";
 		document.getElementById("formWithdraw").style.display = "none";
+		document.getElementById("formWithdraw").reset();
+		document.getElementById("changeWithdraw").className = "";
 	});
 	window.addEventListener('click', function(event) {
     	if (event.target == modal) {
 			modal.style.display = "none";
-			document.getElementById("formDeposit").style.display = "none";
 			document.getElementById("formWithdraw").style.display = "none";
+			document.getElementById("formWithdraw").reset();
+			document.getElementById("changeWithdraw").className = "";
     	}
 	});
 }
@@ -176,9 +177,13 @@ function balanceChange() {
 let addCust = document.getElementById("addCust");
 addCust.addEventListener("click", addCustomer);
 
+let fName = document.getElementById("addFName");
+let lName = document.getElementById("addLName");
+let balance = document.getElementById("addBalance");
+let fiveKTime = document.getElementById("add5kTime");
+
 function addCustomer() {
 	document.getElementById("formAddCustomer").style.display = "block";
-	document.getElementById("formDeposit").style.display = "none";
 	document.getElementById("formWithdraw").style.display = "none";
 	document.getElementById("formDeleteCustomer").style.display = "none";
 
@@ -191,12 +196,25 @@ function addCustomer() {
 	span.addEventListener('click', function() {
 		modal.style.display = "none";
 		document.getElementById("formAddCustomer").style.display = "none";
+		document.getElementById("formAddCustomer").reset();
+
+		fName.className = "";
+		lName.className = "";
+		balance.className = "";
+		fiveKTime.className = "";
+
 	});
 
 	window.addEventListener('click', function(event) {
     	if (event.target == modal) {
 			modal.style.display = "none";
 			document.getElementById("formAddCustomer").style.display = "none";
+			document.getElementById("formAddCustomer").reset();
+
+			fName.className = "";
+			lName.className = "";
+			balance.className = "";
+			fiveKTime.className = "";
     	}
 	});
 }
@@ -204,7 +222,6 @@ function addCustomer() {
 document.addEventListener('click', function (event) {
     if (event.target.classList.contains('balance')) {
 		balanceChange();
-		document.getElementById("depositID").value = event.target.id;
 		document.getElementById("withdrawID").value = event.target.id;
 	}
 	else if (event.target.classList.contains('btnDelete')) {
@@ -252,10 +269,7 @@ if(isCustomerValid(validationData)) {
 	document.getElementById("formAddCustomer").style.display = "none";
 }
 
-let fName = document.getElementById("addFName");
-let lName = document.getElementById("addLName");
-let balance = document.getElementById("addBalance");
-let fiveKTime = document.getElementById("add5kTime");
+
 
 function isCustomerValid(obj) {
 	if(obj.fName == true && obj.lName == true && obj.balance == true && obj.fiveKTime == true) {
@@ -279,3 +293,15 @@ fName.addEventListener("input", () => validate(fName, /^[A-Za-z]{3,}$/, "fName")
 lName.addEventListener("input", () => validate(lName, /^[A-Za-z]{3,}$/, "lName"));
 balance.addEventListener("input", () => validate(balance, /^[0-9]+$/, "balance"));
 fiveKTime.addEventListener("input", () => validate(fiveKTime, /^[0-9]{2}\:[0-9]{2}\:[0-9]{2}$/, "fiveKTime"));
+
+
+let changeWithdraw = document.getElementById("changeWithdraw");
+
+changeWithdraw.addEventListener("input", function() {
+	if(/^(\+|\-)[0-9]+$/.exec(this.value) !== null) {
+		this.className = "correct";
+	}
+	else {
+		this.className = "invalid";
+	}	
+});

@@ -3,9 +3,9 @@
     "ID": "AdaLam",
     "fName": "Adam",
     "lName": "Lammie",
-    "balance": 57,
+    "balance": 80,
     "directDebit": true,
-    "membership": true,
+    "membership": false,
     "5kTime": "00:15:02"
   },
   {
@@ -14,14 +14,14 @@
     "lName": "Swietoniowski",
     "balance": 30,
     "directDebit": false,
-    "membership": true,
+    "membership": false,
     "5kTime": "00:12:46"
   },
   {
     "ID": "TarGil",
     "fName": "Taran",
     "lName": "Gill",
-    "balance": 192,
+    "balance": 150,
     "directDebit": true,
     "membership": true,
     "5kTime": "00:25:53"
@@ -30,8 +30,8 @@
     "ID": "MuhIss",
     "fName": "Muhammed",
     "lName": "Issa",
-    "balance": 248,
-    "directDebit": true,
+    "balance": 230,
+    "directDebit": false,
     "membership": true,
     "5kTime": "00:09:46"
   },
@@ -39,16 +39,16 @@
     "ID": "LewSmi",
     "fName": "Lewis",
     "lName": "Smith",
-    "balance": 67,
+    "balance": 58,
     "directDebit": true,
-    "membership": true,
+    "membership": false,
     "5kTime": "00:12:34"
   },
   {
     "ID": "AraDav",
     "fName": "Arawn",
     "lName": "Davies",
-    "balance": 130,
+    "balance": 100,
     "directDebit": true,
     "membership": true,
     "5kTime": "00:15:20"
@@ -57,7 +57,7 @@
     "ID": "FahBor",
     "fName": "Fahan",
     "lName": "Borhan",
-    "balance": 85,
+    "balance": 95,
     "directDebit": false,
     "membership": false,
     "5kTime": "00:08:35"

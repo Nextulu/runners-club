@@ -356,61 +356,21 @@ input:focus {
     transition: all .15s;
     cursor: pointer;
 }
-#formDeposit {
-    background-color: #EFEEF3;
-    display: none;
-    position: relative;
-    float: left;
-    width: 50%;
-    height: 250px;
-    flex-wrap: wrap;
-    flex-direction: column;
-    padding: 30px;
-    border-bottom-left-radius: 7px;
-}
-#formDeposit input[type=submit] {
-    height: 30px;
-    width: 40%;
-    background-color: #4F7BFF;
-    color: #f9f9f9;
-    border: none;
-    border-radius: 2px;
-    font-size: 12px;
-    font-weight: 700;
-    transition: all .2s;
-}
-#formDeposit input[type=submit]:hover {
-    background-color: #648bff;
-    transition: all .15s;
-    cursor: pointer;
-}
-#formDeposit input {
-    background-color: #FAF9FF;
-    border: 1px solid #e2e1e9;
-    border-radius: 3px;
-    width: 100%;
-    height: 30px;
-    margin-bottom: 7px;
-}
-#formDeposit span  {
-    color: #8f94a2;
-    display: inline-block;
-    width: 100px;
-    font-size: 16px;
-}
 #formWithdraw {
     background-color: #EFEEF3;
     display: none;
     position: relative;
     float: right;
-    width: 50%;
-    height: 250px;
+    width: 100%;
+    height: 200px;
     flex-wrap: wrap;
     flex-direction: column;
     padding: 30px;
     border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
 }
 #formWithdraw input[type=submit] {
+    float: right;
     height: 30px;
     width: 40%;
     background-color: #4F7BFF;
@@ -420,6 +380,7 @@ input:focus {
     font-size: 12px;
     font-weight: 700;
     transition: all .2s;
+    margin-top: 20px;
 }
 #formWithdraw input[type=submit]:hover {
     background-color: #648bff;
@@ -437,8 +398,8 @@ input:focus {
 #formWithdraw span  {
     color: #8f94a2;
     display: inline-block;
-    width: 100px;
     font-size: 16px;
+    margin-bottom: 10px;
 }
 .confirmModal {
     display: none;
