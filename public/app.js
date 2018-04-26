@@ -305,3 +305,36 @@ changeWithdraw.addEventListener("input", function() {
 		this.className = "invalid";
 	}	
 });
+
+function notify() {
+  let box = document.createElement("div");
+  box.opacity = 1;
+  let p = document.createElement("p");
+  p.innerHTML = "&#9989; Transaction Successful";
+  box.appendChild(p);
+	box.className = "notification";
+  box.style.bottom = y + "px";
+  document.body.appendChild(box);
+  y += 60;
+  console.log(y);
+  
+  function fadeOut(el){
+    el.style.opacity = 1;
+    (function fade() {
+      if ((el.style.opacity -= .1) < 0) {
+      el.style.display = 'none';
+    } else {
+      requestAnimationFrame(fade);
+    }
+  })();
+}
+  
+  setTimeout(function(){ 
+    fadeOut(box);
+    let toasts = document.querySelectorAll(".notification");
+      for(let i = 0; i < toasts.length; i++) {
+        toasts[i].style.bottom = parseInt(toasts[i].style.bottom, 10) - 60 + "px"
+      } 
+      y -= 60;
+  }, 2000);
+});
