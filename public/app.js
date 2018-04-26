@@ -306,6 +306,8 @@ changeWithdraw.addEventListener("input", function() {
 	}	
 });
 
+let y = 30;
+
 function notify() {
   let box = document.createElement("div");
   box.opacity = 1;
