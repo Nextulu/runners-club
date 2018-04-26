@@ -289,7 +289,7 @@ function validate(element, regexp, name) {
 	}
 }
 	
-fName.addEventListener("input", () => validate(fName, /^[A-Za-z]{3,}$/, "fName"));
+fName.addEventListener("input", () => validate(fName, /^[A-Za-z\s]{3,}$/, "fName"));
 lName.addEventListener("input", () => validate(lName, /^[A-Za-z]{3,}$/, "lName"));
 balance.addEventListener("input", () => validate(balance, /^[0-9]+$/, "balance"));
 fiveKTime.addEventListener("input", () => validate(fiveKTime, /^[0-9]{2}\:[0-9]{2}\:[0-9]{2}$/, "fiveKTime"));
