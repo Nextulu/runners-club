@@ -501,5 +501,18 @@ input:focus {
     left: 10px;
     bottom: 10px;
     color: #75839d;
-
+}
+.notification {
+  display: flex;
+  position: fixed;
+  left: 260px;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 50px;
+  background-color: #4CAF50;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+  font-weight: 700;
+  border: 1px solid #43A047;
+  color: #FFFFFF;
 }
